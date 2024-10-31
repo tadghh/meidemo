@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-200;
+  }
+}
+
+
+.border-prm-clr{
+  @apply border-white
+}
+.background-c{
+  @apply bg-black
+}
+.background-contrast{
+  @apply bg-white
+}
+.primary-text{
+	@apply text-neutral-50
+}
+
+#progress-bar {
+	width: 0;
+  max-width:  calc(100% - 6rem);
+  left: 3rem;
+	transition: width 0.3s linear;
+  opacity: 1;
+}
+
+#searchinput{
+  @apply z-40 px-1 m-0.5 w-full rounded-sm border ring-transparent outline-none background-c grow primary-text focus:outline-none border-neutral-100;
+}
+
+.prog-bar{
+  @apply absolute left-0 z-20 h-8 rounded-md opacity-10 background-contrast
+}
+#search-cont{
+  @apply flex items-center mt-4 w-full rounded-lg border-0 focus:outline-none background-c border-neutral-200 grow
+}
+#searchresults{
+  @apply hidden overflow-visible absolute right-0 z-10 px-12 mt-2 w-full shadow-lg group-focus-within:block
+}
+#hits {
+  @apply flex flex-col px-1.5 py-1 space-y-2 rounded-md border border-prm-clr background-c
+}

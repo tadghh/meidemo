@@ -1,0 +1,4 @@
+web: env RUBY_DEBUG_OPEN=true bin/rails server
+js: yarn build --watch
+css: yarn build:css --watch
+search: ./meilisearch --http-addr '127.0.0.1:7700' --master-key='34528d9b5c9638642b48e810da7c0499' --no-analytics
