@@ -1,6 +1,6 @@
 # Setup
 
-[Article](https://tadgh.dev/blog/mei-blog-post)
+This repo was created to demo the installation of Meilisearch and Rails 7 - [Article](https://tadgh.dev/blog/mei-blog-post)
 
 ## Made With
 - Ruby 3.3.5
