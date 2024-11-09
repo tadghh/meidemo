@@ -1,4 +1,7 @@
 # Setup
+
+[Article](https://tadgh.dev/blog/mei-blog-post)
+
 ## Made With
 - Ruby 3.3.5
 - Node 23
