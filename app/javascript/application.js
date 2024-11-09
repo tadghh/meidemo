@@ -11,7 +11,7 @@ document.addEventListener("turbo:load", () => {
 
   // Function to fetch search results
   const fetchSearchResults = (query) => {
-    // If there is no search bail, you should check the docs they cover the default behaviour of meilisearch when given an empty search
+    // If no search bail, you should check the Meilisearch docs they cover the default behaviour of when given an empty search
     if (!query) {
       return;
     }

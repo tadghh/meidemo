@@ -1,21 +1,25 @@
 
-# # Make sure no previous, is running
-# system("pkill -f meilisearch")
+if Rails.env.development?
+  # Make sure no previous instance is running
+  system("pkill -f meilisearch")
 
-# # Wait
-# system("sleep 1")
+  # Wait
+  sleep 1
 
-# # Start server
-# system("./meilisearch --master-key=34528d9b5c9638642b48e810da7c0499 --no-analytics &")
+  # Start Meilisearch server
+  system("./meilisearch --no-analytics &")
 
-# # Wait for boot to complete
-# system("sleep 1")
+  # Wait for boot to complete
+  sleep 1
 
-# Dump current indexs
-# Post.clear_index!
-# Community.clear_index!
-# Post.destroy_all
-# Community.destroy_all
+  # Dump current indexes
+  Post.clear_index!
+  Community.clear_index!
+  Post.destroy_all
+  Community.destroy_all
+end
+
+
 catCommunity = Community.create!(name: 'CatCommunity', description: 'cats yo.')
 dogCommunity = Community.create!(name: 'DogCommunity', description: 'dogs yo.')
 
@@ -27,9 +31,9 @@ Post.create!(title: 'Woah woah 100 reddit golds!', content: 'Mods hes doing it s
 # Dog posts
 Post.create!(title: 'Dogs out?', content: 'is it a dogs out sort of summer?', community: dogCommunity)
 
-Post.reindex!
-Community.reindex!
 
-# system("pkill -f meilisearch")
+if Rails.env.development?
+  system("pkill -f meilisearch")
+end
 
 puts "Seed data created successfully!"

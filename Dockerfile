@@ -1,4 +1,3 @@
-# syntax = docker/dockerfile:1
 ARG RUBY_VERSION=3.3.5
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
@@ -136,5 +135,3 @@ RUN chmod +x /rails/bin/start.sh
 EXPOSE 3000
 
 ENTRYPOINT ["/bin/sh", "-c", "/rails/bin/start.sh"]
-# ENTRYPOINT ["/bin/sh"]
-CMD []
