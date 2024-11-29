@@ -90,18 +90,20 @@ RUN mkdir -p /var/run/postgresql && \
     # Stop PostgreSQL (it will be started by the start script)
     su - postgres -c "/usr/lib/postgresql/15/bin/pg_ctl -D /var/lib/postgresql/data stop"
 
-
-
-
 # Rotating API keys, this is more secure but if you arent self hosting it will cause issues
-RUN openssl rand -hex 16 > /tmp/meili_master_key && \
-echo "export MEILI_MASTER_KEY=$(cat /tmp/meili_master_key)" >> /etc/environment
+RUN openssl rand -hex 16 > /tmp/meili_master_key
+RUN echo "export MEILI_MASTER_KEY=$(cat /tmp/meili_master_key)" >> /etc/environment
 
 # Script to setup demo env, typically these would be in their own containers
 COPY <<-'EOF' /rails/bin/start.sh
 #!/bin/bash
+# Note: not all bash scripts are compatible with sh
+
+# loading the env 'MEILI_MASTER_KEY'
+# the 'cat' command seen in the echo above is run here too
 . /etc/environment
 
+# The env has been set above, now we can use it in the script
 # Set the api key to master so we can seed db
 export MEILISEARCH_API_KEY=$MEILI_MASTER_KEY
 
