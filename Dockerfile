@@ -92,6 +92,7 @@ RUN mkdir -p /var/run/postgresql && \
 
 # Rotating API keys, this is more secure but if you arent self hosting it will cause issues
 RUN openssl rand -hex 16 > /tmp/meili_master_key
+# Echoing/writing the following string into /etc/environment. The 'cat' command will be evaluated when the '/etc/environment' file is loaded
 RUN echo "export MEILI_MASTER_KEY=$(cat /tmp/meili_master_key)" >> /etc/environment
 
 # Script to setup demo env, typically these would be in their own containers
@@ -100,7 +101,7 @@ COPY <<-'EOF' /rails/bin/start.sh
 # Note: not all bash scripts are compatible with sh
 
 # loading the env 'MEILI_MASTER_KEY'
-# the 'cat' command seen in the echo above is run here too
+# the 'cat' command seen written above is evaluated and set here
 . /etc/environment
 
 # The env has been set above, now we can use it in the script
